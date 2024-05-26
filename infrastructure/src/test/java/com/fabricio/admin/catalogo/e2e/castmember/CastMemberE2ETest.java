@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CastMemberE2ETest implements MockDsl {
 
     @Container
-    private static final MySQLContainer MYSQL_CONTAINER = new MySQLContainer("mysql:latest")
+    private static final MySQLContainer MYSQL_CONTAINER = new MySQLContainer("mysql:8.0")
             .withPassword("root")
             .withUsername("root")
             .withDatabaseName("adm_videos");
