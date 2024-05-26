@@ -18,8 +18,12 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.wait.strategy.LogMessageWaitStrategy;
+import org.testcontainers.containers.wait.strategy.WaitAllStrategy;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.time.Duration;
 
 @E2ETest
 @Testcontainers
@@ -38,6 +42,11 @@ public class CategoryE2ETest implements MockDsl {
 
     @DynamicPropertySource
     public static void setDatasourceProperties(final DynamicPropertyRegistry registry) {
+        MYSQL_CONTAINER.setWaitStrategy(new LogMessageWaitStrategy()
+                .withRegEx(".database system is ready to accept connections.\\s")
+                .withTimes(1)
+                .withStartupTimeout(Duration.ofSeconds(60)));
+
         final var mappedPort = MYSQL_CONTAINER.getMappedPort(3306);
         System.out.printf("Container is running on port %s'n", mappedPort);
         registry.add("mysql.port", () -> mappedPort);
