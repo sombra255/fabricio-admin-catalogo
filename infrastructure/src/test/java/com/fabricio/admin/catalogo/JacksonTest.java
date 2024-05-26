@@ -16,6 +16,6 @@ import java.lang.annotation.*;
 @JsonTest(includeFilters = {
         @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = ObjectMapperConfig.class)
 })
-@Tag("e2eTest")
+@Tag("integrationTest")
 public @interface JacksonTest {
 }

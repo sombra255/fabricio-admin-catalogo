@@ -21,6 +21,6 @@ import java.lang.annotation.*;
         })
 @DataJpaTest
 @ExtendWith(MySQLCleanUpExtension.class)
-@Tag("e2eTest")
+@Tag("integrationTest")
 public @interface MySQLGatewayTest {
 }

@@ -147,7 +147,7 @@ public class CategoryTest extends UnitTest {
     }
 
     @Test
-    public void givenAValidActiveCategory_whenCallDeactivate_thenReturnCategoryInactivated() {
+    public void givenAValidActiveCategory_whenCallDeactivate_thenReturnCategoryInactivated() throws InterruptedException {
         final var expectedName = "Filmes";
         final var expectedDescription = "A categoria mais assistida";
         final var expectedIsActive = false;
@@ -158,6 +158,7 @@ public class CategoryTest extends UnitTest {
         Assertions.assertDoesNotThrow(() -> aCategory.validate(new ThrowsValidationHandler()));
 
         final var createdAt = aCategory.getCreatedAt();
+        Thread.sleep(1);
         final var updatedAt = aCategory.getUpdatedAt();
 
         Assertions.assertTrue(aCategory.isActive());

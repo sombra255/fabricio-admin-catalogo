@@ -5,7 +5,7 @@ buildscript {
 }
 
 plugins {
-    id 'java'
+    id 'java-conventions'
     id 'jacoco-report-aggregation'
     id 'application'
     id 'org.springframework.boot' version '2.7.7'
@@ -14,16 +14,12 @@ plugins {
 }
 
 group = 'com.fabricio.admin.catalogo.infrastructure'
-version = '1.0-SNAPSHOT'
 
 bootJar {
     archiveName 'application.jar'
     destinationDirectory.set(file("${rootProject.buildDir}/libs"))
 }
 
-repositories {
-    mavenCentral()
-}
 
 dependencies {
     implementation(project(":domain"))
@@ -89,7 +85,3 @@ testCodeCoverageReport {
 tasks.named("jacocoTestReport") {
     dependsOn tasks.named("testCodeCoverageReport", JacocoReport)
 }
-
-//tasks.test {
-//    useJUnitPlatform()
-//}
